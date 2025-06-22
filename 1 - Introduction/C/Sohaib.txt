@@ -1,0 +1,30 @@
+#include<iostream>
+
+using namespace std;
+
+
+int main() {
+
+	string s;
+	bool flag;
+
+	int n;
+	cin >> n;
+
+	while (n--)
+	{
+		cin >> s;
+		int length = s.size();
+
+		if (length <= 10)
+		{
+			cout << s << endl;
+		}
+		else
+		{
+			cout << s[0] << length - 2 << s[length - 1] << endl;
+		}
+	}
+
+	return 0;
+}

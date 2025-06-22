@@ -1,0 +1,38 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+
+using namespace std;
+
+
+int main() {
+
+	int n;
+	cin >> n;
+	int x, counter = 1;
+
+	while (true) {
+		int a[4];
+		x = n + counter;
+		for (int i = 3; i >= 0; i--)
+		{
+			a[i] = x % 10;
+			x /= 10;
+		}
+
+		if (!(a[0] == a[1] || a[0] == a[2] || a[0] == a[3] || a[1] == a[2] || a[1] == a[3] || a[2] == a[3]))
+		{
+			cout << n + counter;
+			return 0;
+		}
+
+
+		counter++;
+	}
+
+	
+	
+
+
+	return 0;
+}

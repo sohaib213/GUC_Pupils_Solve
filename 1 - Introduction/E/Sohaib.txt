@@ -1,0 +1,27 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+
+using namespace std;
+
+
+int main() {
+
+	int t;
+	cin >> t;
+	int sum =  0;
+
+	while (t--)
+	{
+		int x1, x2, x3;
+		cin >> x1 >> x2 >> x3;
+
+		if (x1 + x2 + x3 >= 2)
+			sum++;
+	}
+
+	cout << sum << endl;
+
+
+	return 0;
+}
