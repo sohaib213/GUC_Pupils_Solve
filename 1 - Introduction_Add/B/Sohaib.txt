@@ -1,0 +1,49 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<unordered_map>
+#include<cmath>
+
+using namespace std;
+
+
+int main() {
+
+	int t;
+	cin >> t;
+
+	while (t--)
+	{
+		char c;
+		int left = -1, right = -1, l, r;
+		for (int i = 0; i < 8; i++)
+		{
+			l = r = -1;
+			for (int j = 0; j < 8; j++)
+			{
+				
+				cin >> c;
+				if (c == '#')
+				{
+					if (l == -1)
+						l = j + 1;
+					else
+						r = j + 1;
+
+					//cout << l << ' ' << r << ' ' << left << ' ' << right << endl;
+					if (l == left + 1 && l == right - 1)
+					{
+						cout << i + 1 << ' ' << j + 1 << endl;
+					}
+				}
+			}
+
+
+			left = l;
+			right = r;
+		}
+	}
+	
+	
+	return 0;
+}

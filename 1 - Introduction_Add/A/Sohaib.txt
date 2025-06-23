@@ -1,0 +1,57 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<unordered_map>
+#include<cmath>
+
+using namespace std;
+
+
+int main() {
+
+	int n, sum = 0;
+	cin >> n;
+	unordered_map<int, int> map;
+	
+	for (int i = 0; i < n; i++)
+	{
+		int x;
+		cin >> x;
+		map[x]++;
+	}
+
+	sum += map[4];
+
+	int min_1_3 = min(map[1], map[3]);
+	sum += min_1_3;
+	map[1] -= min_1_3;
+	map[3] -= min_1_3;
+
+	sum += map[3];
+
+
+	sum += map[2] / 2;
+	map[2] = map[2] % 2;
+
+
+	if (map[2] == 1)
+	{
+		if (map[1] >= 2)
+		{
+			map[1] -= 2;
+		}
+		else if (map[1] == 1)
+		{
+			map[1] --;
+		}
+		sum++;
+	}
+
+
+	sum += ceil(map[1] / 4.0);
+
+	cout << sum << endl;
+	
+	
+	return 0;
+}
