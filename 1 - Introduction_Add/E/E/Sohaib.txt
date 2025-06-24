@@ -1,0 +1,49 @@
+#include<iostream>
+#include<algorithm>
+#include<unordered_map>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        string s[8];
+        for (int i = 0; i < 8; i++) {
+            cin >> s[i];
+        }
+
+        bool found = false;
+
+        for (int i = 0; i < 8; i++) {
+            bool allRed = true;
+            for (int j = 0; j < 8; j++) {
+                if (s[i][j] != 'R') {
+                    allRed = false;
+                    break;
+                }
+            }
+            if (allRed) {
+                cout << "R" << endl;
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            for (int j = 0; j < 8; j++) {
+                bool allBlue = true;
+                for (int i = 0; i < 8; i++) {
+                    if (s[i][j] != 'B') {
+                        allBlue = false;
+                        break;
+                    }
+                }
+                if (allBlue) {
+                    cout << "B" << endl;
+                    break;
+                }
+            }
+        }
+    }
+    return 0;
+}

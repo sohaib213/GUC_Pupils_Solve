@@ -1,0 +1,50 @@
+#include<iostream>
+#include<algorithm>
+#include<unordered_map>
+
+
+using namespace std;
+
+
+int main() {
+
+	unordered_map<char, int> m[3][3];
+
+	string s[4];
+
+	for (int i = 0; i < 4; i++)
+	{
+		cin >> s[i];
+	}
+
+	for (int i = 0; i <= 3; i++)
+	{
+		for (int j = 0; j <= 3; j++)
+		{
+			for (int k = 0; k < 3; k++)
+			{
+				for (int l = 0; l < 3; l++)
+				{
+					if ((i == k || i == k + 1) && (j == l || j == l + 1))
+						m[k][l][s[i][j]]++;
+				}
+			}
+		}
+	}
+
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			//cout << m[i][j]['.'] << " - " << m[i][j]['#'] << "    _     ";
+			if (abs(m[i][j]['.'] - m[i][j]['#']) >= 2)
+			{
+				cout << "YES\n";
+				return 0;
+			}
+		}
+	}
+	cout << "NO\n";
+
+	return 0;
+}
