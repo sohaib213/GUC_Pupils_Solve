@@ -1,0 +1,30 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
+#include <unordered_map>
+#include <map>
+using namespace std;
+
+int main(){
+	
+	int n;
+	string s;
+	cin >> n >> s;
+	unordered_map<string, int> freq;
+	//ABACABA  ->         AB BA AC CA AB BA 
+	for (int i = 0; i < n-1; ++i) {
+		string s1 = s.substr(i, 2);
+		freq[s1]++;
+	}
+	int max = 0;
+	string res;
+	for (auto& f : freq) {
+		if (f.second > max) {
+			max = f.second;
+			res = f.first;			
+		}
+	}
+	cout << res << endl;
+	return 0;
+}    
