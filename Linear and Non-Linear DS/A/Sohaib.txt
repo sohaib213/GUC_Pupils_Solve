@@ -1,0 +1,29 @@
+#include<iostream>  
+#include<algorithm>  
+#include<unordered_map>  
+using namespace std;  
+
+int main() {  
+    int n, max = 0;  
+    cin >> n;  
+    string s, maxStr;
+    cin >> s;  
+
+    unordered_map<string, int> m;
+
+    for (int i = 0; i < n - 1; i++)
+    {  
+        string sa = string(1, s[i]) + string(1, s[i + 1]);
+        m[sa]++;
+        if (m[sa] > max)
+        {
+            max = m[sa];
+            maxStr = sa;
+        }
+    }
+
+    cout << maxStr << endl;
+
+
+    return 0;  
+}
