@@ -1,0 +1,34 @@
+#include<iostream>  
+#include<algorithm>  
+#include<unordered_map>  
+#include<unordered_set>  
+#include<map>
+using namespace std;  
+
+int main() {  
+    int n;
+    cin >> n;
+    string s;
+
+    map <int, string> NO_Name;
+    unordered_map <string, int> Name_POS;
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> s;
+        if (Name_POS.find(s) != Name_POS.end())
+        {
+            NO_Name.erase(Name_POS[s]);
+        }
+        NO_Name[i] = s;
+        Name_POS[s] = i;
+    }
+
+    for (auto N_N_it = NO_Name.rbegin(); N_N_it != NO_Name.rend(); N_N_it++)
+    {
+        cout << N_N_it->second << endl;
+    }
+
+
+    return 0;  
+}
