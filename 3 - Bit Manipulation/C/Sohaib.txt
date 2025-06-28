@@ -1,0 +1,93 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<unordered_map>
+using namespace std;
+
+int main() {
+
+    int n, x;
+    cin >> n;
+    string s;
+    int cost = 10000000;
+    int allExist = 0;
+
+    unordered_map<string, int> m;
+
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> x >> s;
+        sort(s.begin(), s.end());
+        if ((m.find(s) != m.end() && (m[s] > x)) || m.find(s) == m.end())
+        {
+            m[s] = x;
+        }
+    }
+
+
+    if (m.find("A") != m.end())
+    {
+        if (m.find("BC") != m.end())
+        {
+            if (cost > m["A"] + m["BC"])
+                cost = m["A"] + m["BC"];
+        }
+        allExist++;
+    }
+    if (m.find("B") != m.end())
+    {
+        if (m.find("AC") != m.end())
+        {
+            if (cost > m["B"] + m["AC"])
+                cost = m["B"] + m["AC"];
+        }
+        allExist++;
+    }
+    if (m.find("C") != m.end())
+    {
+        if (m.find("AB") != m.end())
+        {
+            if (cost > m["C"] + m["AB"])
+                cost = m["C"] + m["AB"];
+        }
+        allExist++;
+    }
+
+    if (allExist == 3)
+    {
+        if (cost > m["A"] + m["B"] + m["C"])
+            cost = m["A"] + m["B"] + m["C"];
+    }
+
+    if (m.find("ABC") != m.end())
+    {
+        if (cost > m["ABC"])
+            cost = m["ABC"];
+    }
+
+    if (m.find("AB") != m.end() && m.find("BC") != m.end())
+    {
+        if (cost > m["AB"] + m["BC"])
+            cost = m["AB"] + m["BC"];
+    }
+
+    if (m.find("AB") != m.end() && m.find("AC") != m.end())
+    {
+        if (cost > m["AB"] + m["AC"])
+            cost = m["AB"] + m["AC"];
+    }
+
+    if (m.find("AC") != m.end() && m.find("BC") != m.end())
+    {
+        if (cost > m["AC"] + m["BC"])
+            cost = m["AC"] + m["BC"];
+    }
+
+    if (cost != 10000000)
+        cout << cost << endl;
+    else
+        cout << -1 << endl;
+
+    return 0;
+}

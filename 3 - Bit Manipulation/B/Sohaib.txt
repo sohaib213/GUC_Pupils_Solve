@@ -1,0 +1,38 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<queue>
+using namespace std;
+
+int main() {
+
+    int t;
+    cin >> t;
+
+    while (t--)
+    {
+        int n, x;
+        cin >> n;
+
+        int sumXOR;
+
+        for (int i = 0; i < n; i++)
+        {
+            cin >> x;
+            if (i == 0)
+                sumXOR = x;
+            else
+                sumXOR ^= x;
+        }
+        if ((n % 2 == 0 && sumXOR == 0) || (n % 2 == 1))
+        {
+            cout << sumXOR << endl;
+        }
+        else
+            cout << -1 << endl;
+
+
+    }
+
+    return 0;
+}
