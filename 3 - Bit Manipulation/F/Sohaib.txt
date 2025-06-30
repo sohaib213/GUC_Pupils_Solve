@@ -1,0 +1,92 @@
+#include<iostream>
+#include<vector>
+#include<unordered_set>
+#include<queue>
+using namespace std;
+
+int checkBit(int n, int p)
+{
+    return 1 & (n >> p);
+}
+
+int main() {
+    
+    int sum, limit, x, summation = 0;
+    cin >> sum >> limit;
+    priority_queue<pair<int, int>> pq;
+    vector<int> numsTaken;
+
+
+    for (int i = 1; i <= limit; i++)
+    {
+        for (int j = 0; j < 31; j++)
+        {
+            if (checkBit(i, j))
+            {
+                x = 1 << j;
+                pq.push({ x, i });
+                summation += x;
+                //cout << "X: " << x << endl;
+                break;
+            }
+        }
+        //if (firstOnePosition != -1)
+        //{
+        //    if (ones.find(firstOnePosition) != ones.end())
+        //    {
+        //        //cout << "i: " << i << " , " << "first P: " <<  firstOnePosition << endl;
+        //        v.push_back(i);
+        //        ones.erase(firstOnePosition);
+        //    }
+        //}
+        
+    }
+
+    if (summation >= sum)
+    {
+        while (!pq.empty())
+        {
+            pair<int, int> xx = pq.top(); pq.pop();
+            //cout << "x: " << xx.first << " , " << "value: " << xx.second << endl;
+            if (sum - xx.first >= 0)
+            {
+                numsTaken.push_back(xx.second);
+                sum -= xx.first;
+            }
+        }
+    }
+    else
+    {
+        cout << -1 << endl;
+        return 0;
+    }
+
+    if (sum == 0)
+    {
+        cout << numsTaken.size() << endl;
+        for (int num : numsTaken)
+        {
+            cout << num << ' ';
+        }
+    }
+    else
+    {
+        cout << -1 << endl;
+    }
+
+    //if (ones.empty())
+    //{
+    //    cout << v.size() << endl;
+    //    for (int el : v)
+    //    {
+    //        cout << el << ' ';
+    //    }
+
+    //}
+    //else
+    //    cout << -1;
+    //cout << endl;
+
+
+    return 0;
+}

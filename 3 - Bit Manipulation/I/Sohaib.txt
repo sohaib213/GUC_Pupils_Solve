@@ -1,0 +1,72 @@
+#include<iostream>
+#include<vector>
+#include<unordered_set>
+#include<queue>
+using namespace std;
+
+int checkBit(long long n, int p)
+{
+    return 1 & (n >> p);
+}
+void setZero(long long& n, int p)
+{
+    n = n & ~(1LL << p);
+}
+
+int main() {
+    
+    long long t, b, c, d, a;
+    cin >> t;
+
+    while (t--)
+    {
+        a = 0;
+        cin >> b >> c >> d;
+        int x;
+        bool flag = false;
+        for (int i = 0; i <= 60; i++)
+        {
+            x = 1 * checkBit(b, i) + 2 * checkBit(c, i) + 4 * checkBit(d, i);
+            switch (x) {
+            case 0:
+                break;
+            case 1:
+                cout << -1 << endl;
+                flag = true;                
+                break;
+            case 2:
+                a += (1LL << i);
+                break;
+            case 3:
+                a += (1LL << i);
+                break;
+            case 4:
+                a += (1LL << i);
+                break;
+            case 5:
+                break;
+            case 6:
+                cout << -1 << endl;
+                flag = true;                  
+                break;
+            case 7:
+                break;
+            }
+          
+            if (flag)
+            {
+                break;
+            }
+
+        }
+
+        if (!flag)
+        {
+            cout << a << endl;
+        }
+
+    }
+
+
+    return 0;
+}

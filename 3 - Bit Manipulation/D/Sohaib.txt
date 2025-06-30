@@ -1,0 +1,48 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        int n, k;
+        cin >> n >> k;
+
+        vector<int> a(n);
+        for (int i = 0; i < n; i++) {
+            cin >> a[i];
+        }
+
+        long long result = 0;
+
+        for (int bit = 30; bit >= 0; bit--) {
+            int zeros = 0;
+
+            for (int i = 0; i < n; i++) {
+                if (((a[i] >> bit) & 1) == 0) {
+                    zeros++;
+                }
+            }
+
+            if (zeros == 0) {
+                result += (1LL << bit);
+            }
+            else if (zeros <= k) {
+                result += (1LL << bit);
+                k -= zeros;
+
+                for (int i = 0; i < n; i++) {
+                    if (((a[i] >> bit) & 1) == 0) {
+                        a[i] |= (1 << bit);
+                    }
+                }
+            }
+        }
+
+        cout << result << '\n';
+    }
+
+    return 0;
+}

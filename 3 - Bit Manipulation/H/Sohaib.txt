@@ -1,0 +1,71 @@
+#include<iostream>
+#include<vector>
+#include<unordered_set>
+#include<queue>
+using namespace std;
+
+int checkBit(int n, int p)
+{
+    return 1 & (n >> p);
+}
+
+int main() {
+    
+    int t, n, sum = 0;
+    cin >> t;
+
+    while (t--)
+    {
+        sum = 0;
+        cin >> n;
+
+        if (n == 4)
+        {
+            cout << 0 << ' ' << 2 << ' ' << 1 << ' ' << 3 << endl;
+            continue;
+        }
+        else if (n == 3)
+        {
+            cout << 9 << ' ' << 2 << ' ' << 11 << endl;
+            continue;
+        }
+        for (int i = 0; i < n - 2; i++)
+        {
+            sum ^= i;
+            if (i == n - 3 && sum == 0)
+            {
+                sum ^= i;
+                sum ^= i + 1;
+                cout << i + 1 << ' ';
+            }
+            else
+                cout << i << ' ';
+        }
+
+
+        int bits;
+        for (int i = 1; i < 31; i++)
+        {
+            n = n >> 1;
+            if (n == 1)
+            {
+                bits = i + 1;
+                break;
+            }
+        }
+
+        int x1, x2;
+        x1 = x2 = 1 << (bits + 2);
+        for (int i = 0; i < bits; i++)
+        {
+            if (checkBit(sum, i))
+            {
+                x2 = x2 | (1 << i);
+            }
+        }
+        cout << x1 << ' ' << x2 << endl;
+    }
+
+
+    return 0;
+}
